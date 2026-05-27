@@ -1,0 +1,6 @@
+{
+  "name": "Pulse",
+  "description": "Live radar for conference networking to compare topics, drop quests, and discover semantic connections.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

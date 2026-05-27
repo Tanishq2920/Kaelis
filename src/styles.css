@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-cyan: var(--cyan);
+  --color-cyan-soft: var(--cyan-soft);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --background: oklch(0.12 0.012 280);
+  --foreground: oklch(0.97 0.005 280);
+
+  --card: oklch(0.16 0.012 280 / 60%);
+  --card-foreground: oklch(0.97 0.005 280);
+  --popover: oklch(0.14 0.012 280);
+  --popover-foreground: oklch(0.97 0.005 280);
+
+  --primary: oklch(0.68 0.22 18);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.22 0.015 280);
+  --secondary-foreground: oklch(0.97 0.005 280);
+  --muted: oklch(0.2 0.012 280);
+  --muted-foreground: oklch(0.65 0.012 280);
+  --accent: oklch(0.78 0.18 210);
+  --accent-foreground: oklch(0.1 0.01 280);
+  --destructive: oklch(0.6 0.24 25);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.68 0.22 18 / 60%);
+
+  /* brand */
+  --coral: oklch(0.68 0.22 18); /* #FF3B5C-ish */
+  --coral-soft: oklch(0.68 0.22 18 / 18%);
+  --cyan: oklch(0.85 0.16 210); /* #00E5FF-ish */
+  --cyan-soft: oklch(0.85 0.16 210 / 18%);
+  --ink: oklch(0.97 0.005 280); /* #F5F5F7 */
+  --ink-dim: oklch(0.66 0.012 280); /* #8E8E93 */
+
+  --gradient-radial-warm: radial-gradient(
+    ellipse 80% 60% at 50% 45%,
+    oklch(0.2 0.05 25 / 55%) 0%,
+    oklch(0.13 0.018 280 / 0%) 60%
+  );
+
+  --shadow-glass: 0 1px 0 0 oklch(1 0 0 / 6%) inset, 0 30px 60px -30px oklch(0 0 0 / 60%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body,
+  #app {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-image: var(--gradient-radial-warm);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .glass {
+    background: linear-gradient(180deg, oklch(1 0 0 / 4%) 0%, oklch(1 0 0 / 2%) 100%);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid oklch(1 0 0 / 8%);
+    box-shadow: var(--shadow-glass);
+  }
+  .glass-strong {
+    background: linear-gradient(
+      180deg,
+      oklch(0.18 0.012 280 / 78%) 0%,
+      oklch(0.13 0.012 280 / 78%) 100%
+    );
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid oklch(1 0 0 / 8%);
+    box-shadow: var(--shadow-glass);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .tracking-tightest {
+    letter-spacing: -0.04em;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   Height-Aware Adaptive Onboarding Flow Responsive Framework
+   ──────────────────────────────────────────────────────────────────────────── */
+@media (max-height: 860px) {
+  /* Compresses step container heights & paddings */
+  .onboarding-section {
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+    padding-top: max(1.25rem, 4.5vh) !important;
+    padding-bottom: max(1.25rem, 4.5vh) !important;
+  }
+
+  /* Compresses the Header */
+  header {
+    padding-top: max(0.5rem, 1.5vh) !important;
+    padding-bottom: 0px !important;
+  }
+
+  /* Compresses margins on title elements */
+  .onboarding-sub-margin {
+    margin-top: 0.5rem !important;
+  }
+  .onboarding-grid-margin {
+    margin-top: max(0.875rem, 2vh) !important;
+  }
+  .onboarding-panel-margin {
+    margin-top: max(0.75rem, 1.75vh) !important;
+  }
+  .onboarding-cta-margin {
+    margin-top: max(1rem, 2.5vh) !important;
+  }
+
+  /* Compresses card padding & min-heights */
+  .onboarding-card {
+    min-height: 110px !important;
+    padding: 1rem !important;
+  }
+  .onboarding-card div.mt-3,
+  .onboarding-card div.sm:mt-4,
+  .onboarding-card div.md:mt-5 {
+    margin-top: 0.375rem !important;
+  }
+  .onboarding-card div.mt-1,
+  .onboarding-card div.sm:mt-2 {
+    margin-top: 0.125rem !important;
+  }
+
+  /* Compresses Step 2 time selection card min heights */
+  .time-selection-card {
+    min-height: 75px !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Compresses active subpanel card and components */
+  .onboarding-subpanel {
+    padding: 1rem !important;
+    border-radius: 1.5rem !important;
+  }
+  .onboarding-subpanel select,
+  .onboarding-subpanel input {
+    padding: 0.5rem 0.875rem !important;
+  }
+
+  /* Topic Constellation height clamp */
+  .constellation-workspace {
+    height: 180px !important;
+    border-radius: 1.5rem !important;
+  }
+
+  /* Chips and battery panel spacing */
+  .onboarding-subpanel .flex-wrap {
+    gap: 0.375rem !important;
+  }
+  .onboarding-subpanel button.glass {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 11px !important;
+  }
+
+  /* Batteries and ranges */
+  .battery-container {
+    padding: 0.65rem 0.875rem !important;
+  }
+
+  /* Step 2 personality row and dividers */
+  .step2-divider {
+    margin-top: max(0.875rem, 2vh) !important;
+    padding-top: max(0.875rem, 2vh) !important;
+  }
+  .personality-card {
+    padding: 0.65rem 0.875rem !important;
+    border-radius: 1rem !important;
+  }
+
+  /* Step 3 textareas and suggestions */
+  .quest-textarea {
+    height: 110px !important;
+    padding: 0.875rem 1.125rem !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (max-height: 720px) {
+  .onboarding-section {
+    padding-top: max(0.75rem, 2.5vh) !important;
+    padding-bottom: max(1rem, 3vh) !important;
+  }
+
+  header {
+    padding-top: 0.5rem !important;
+  }
+
+  .onboarding-grid-margin {
+    margin-top: max(0.75rem, 1.75vh) !important;
+  }
+
+  .onboarding-card {
+    min-height: 95px !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .onboarding-card div.text-\[16px\] {
+    font-size: 14px !important;
+  }
+
+  .time-selection-card {
+    min-height: 65px !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+  .time-selection-card div.text-\[18px\] {
+    font-size: 14px !important;
+  }
+
+  /* Compresses laser constellation workspace even further to preserve perfect layout fit */
+  .constellation-workspace {
+    height: 145px !important;
+  }
+
+  /* Step 3 text area */
+  .quest-textarea {
+    height: 85px !important;
+  }
+}
+
+@media (max-height: 620px) {
+  .onboarding-section {
+    padding-top: 0.375rem !important;
+    padding-bottom: 0.375rem !important;
+  }
+
+  header {
+    display: none !important; /* hide header to save crucial vertical space on extremely short viewports */
+  }
+
+  .onboarding-grid-margin {
+    margin-top: 0.5rem !important;
+  }
+
+  .onboarding-card {
+    min-height: 80px !important;
+  }
+
+  .constellation-workspace {
+    height: 110px !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   Ambient Premium Custom Scrollbar for Viewport Overflow Constraints
+   ──────────────────────────────────────────────────────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(250, 104, 114, 0.35); /* soft glow matching warm coral */
+}
+
